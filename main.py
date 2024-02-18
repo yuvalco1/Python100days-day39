@@ -60,3 +60,6 @@ for row in sheet_data:
             print (f"found new Lowest price for flight from Tel-Aviv(TLV) to {row['city']}({flyto}) is ${str(new_price)}; old price was ${str(row['lowestPrice'])}\nFlight has no stops")
     else:
         print ("Could NOT found new Lowest price for flight from Tel-Aviv to " + row["city"] + "; old data is $" + str(row["lowestPrice"]))
+
+
+# Users code is on Replit at https://replit.com/@yuvalco1/Yuvals-flight-club
