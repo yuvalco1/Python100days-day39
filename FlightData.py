@@ -22,9 +22,15 @@ class FlightData:
         response = requests.get(url=kiwi_endpoint, params=kiwi_parameters, headers=kiwi_headers)
 
         data = response.json()
+        #print(data)
 
         price = data["data"][0]["price"]
-        return price
+        flyto = data["data"][0]["flyTo"]
+        if len(data["data"][0]["route"]) > 2:
+            citystop = data["data"][0]["route"][0]["cityTo"]
+        else:
+            citystop = "DIRECT"
+        return price, flyto, citystop
 
 
 

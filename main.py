@@ -51,8 +51,12 @@ for row in sheet_data:
 # sheet_data = response2.json()["prices"]
 # pprint(sheet_data)
 for row in sheet_data:
-    new_price = FlightData.getFlightData(row["iataCode"])
+    new_price, flyto , cityto = FlightData.getFlightData(row["iataCode"])
+    print (new_price)
     if int(new_price) < int(row["lowestPrice"]):
-        print ("found new Lowest price for flight from Tel-Aviv to " + row["city"] + " is $" + str(new_price))
+        if cityto != "DIRECT":
+            print (f"found new Lowest price for flight from Tel-Aviv(TLV) to {row['city']}({flyto}) is ${str(new_price)}; old price was ${str(row['lowestPrice'])}\nFlight has 1 stoppover in {cityto}")
+        else:
+            print (f"found new Lowest price for flight from Tel-Aviv(TLV) to {row['city']}({flyto}) is ${str(new_price)}; old price was ${str(row['lowestPrice'])}\nFlight has no stops")
     else:
         print ("Could NOT found new Lowest price for flight from Tel-Aviv to " + row["city"] + "; old data is $" + str(row["lowestPrice"]))
